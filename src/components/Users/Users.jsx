@@ -4,19 +4,59 @@ import s from './Users.module.css';
 import userPhoto from '../../assets/img/icon.svg';
 
 class Users extends React.Component {
-    constructor(props) {
-        super(props);
+    componentDidMount() {
         axios
-            .get('https://social-network.samuraijs.com/api/1.0/users')
+            .get(
+                `https://social-network.samuraijs.com/api/1.0/users?page=${this.props.currentPage}&count=${this.props.pageSize}`
+            )
             .then(res => {
                 this.props.setUsers(res.data.items);
+                this.props.setTotalUsersCount(res.data.totalCount);
             });
     }
 
+    onPageChanged = pageNumber => {
+        this.props.setCurrentPage(pageNumber);
+
+        axios
+            .get(
+                `https://social-network.samuraijs.com/api/1.0/users?page=${pageNumber}&count=${this.props.pageSize}`
+            )
+            .then(res => {
+                this.props.setUsers(res.data.items);
+            });
+    };
+
     render() {
+        let pagesCount = Math.ceil(
+            this.props.totalUsersCount / this.props.pageSize
+        );
+
+        let pages = [];
+        for (let i = 1; i <= 10; i++) {
+            pages.push(i);
+        }
+
         return (
             <div className={s.users}>
+                {pages.map(p => {
+                    return (
+                        <span
+                            className={
+                                this.props.currentPage === p
+                                    ? s.selectedPage
+                                    : s.page
+                            }
+                            onClick={() => {
+                                this.onPageChanged(p);
+                            }}
+                        >
+                            {p}
+                        </span>
+                    );
+                })}
                 <h1>Users will be here</h1>
+
                 {this.props.users.map(user => (
                     <div className={s.wrapper} key={user.id}>
                         <div className={s.pic}>
