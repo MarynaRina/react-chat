@@ -1,0 +1,27 @@
+.item {
+    padding-bottom: 30px;
+}
+
+.item img {
+    width: 50px;
+    height: 50px;
+    border-radius: 30px;
+    margin-right: 10px;
+    margin-bottom: 10px;
+    margin-top: 20px;
+}
+.post {
+    display: flex;
+    align-items: center;
+}
+.likePost {
+    display: flex;
+    align-items: center;    
+}
+.likePost img{
+    padding: 0;
+    margin: 0;
+    width: 30px;
+    height: 30px;
+    margin-right: 5px;
+}

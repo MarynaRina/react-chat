@@ -1,0 +1,22 @@
+.navbar {
+    grid-area: n;
+    background-color: #f9f9f9;
+}
+.item {
+    cursor: pointer;
+    padding-bottom: 20px;
+} 
+
+.item:first-child{
+    padding-top: 20px;
+}
+
+/* 
+.item a:active, .item a:focus, .item:hover {
+    color: blue;
+} */
+
+.item a.active {
+    color: blue;
+}
+

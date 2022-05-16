@@ -1,0 +1,13 @@
+.profile__photo img{
+    width: 100px;
+}
+
+.descr {
+    display: flex;
+}
+
+.descrIcon {
+    padding-left: 5px;
+    cursor: pointer;
+}
+
