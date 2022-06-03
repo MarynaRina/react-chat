@@ -1,7 +1,7 @@
 import { NavLink } from 'react-router-dom';
 import s from './Navbar.module.css';
 
-export const Navbar = () => {
+export const Navbar = ({ isAuth, login }) => {
     return (
         <nav className={s.navbar}>
             <div className={s.item}>
@@ -69,6 +69,9 @@ export const Navbar = () => {
                 >
                     Users
                 </NavLink>
+                <div className={s.item}>
+                    {isAuth ? login : <NavLink to={'/login'}>Login</NavLink>}
+                </div>
             </div>
         </nav>
     );

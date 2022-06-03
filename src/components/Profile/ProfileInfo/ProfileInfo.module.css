@@ -1,13 +1,19 @@
-.profile__photo img{
-    width: 100px;
+.profile__photo img {
+    width: 40rem;
+    opacity: 0.7;
 }
 
-.descr {
-    display: flex;
+.job {
+    margin-bottom: 50px;
 }
-
+.h1 {
+    font-weight: bold;
+    padding-bottom: 10px;
+}
 .descrIcon {
-    padding-left: 5px;
     cursor: pointer;
 }
 
+.descrIcon > img {
+    border-radius: 50%;
+}
