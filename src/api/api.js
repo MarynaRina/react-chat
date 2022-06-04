@@ -14,14 +14,15 @@ export const usersAPI = {
             .get(`users?page=${currentPage}&count=${pageSize}`)
             .then(res => res.data);
     },
-    followUsers(currentPage, pageSize) {
-        return instance
-            .get(`users?page=${currentPage}&count=${pageSize}`)
-            .then(res => res.data);
+    follow(userId) {
+        return instance.post(
+            `follow/${userId}`
+        );
     },
-    deleteUsers(currentPage, pageSize) {
-        return instance
-            .get(`users?page=${currentPage}&count=${pageSize}`)
-            .then(res => res.data);
+    unFollow(userId) {
+        return instance.delete(
+            `follow/${userId}`
+        );
     },
+
 };
