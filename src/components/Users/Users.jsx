@@ -30,6 +30,7 @@ export const Users = props => {
                     </span>
                 );
             })}
+
             <h1>Users will be here</h1>
 
             {props.users.map(user => (
@@ -49,7 +50,9 @@ export const Users = props => {
                         <span className={s.btn}>
                             {user.followed ? (
                                 <button
-                                    onClick={() => {
+                                    disabled={props.followingInProgress.some(id => id === user.id)}
+                                    onClick={() => { 
+                                        props.toggleFollowingProgress(true, user.id);
                                         axios
                                             .delete(
                                                 `https://social-network.samuraijs.com/api/1.0/follow/${user.id}`,
@@ -65,6 +68,9 @@ export const Users = props => {
                                                 if (res.data.resultCode === 0) {
                                                     props.unFollow(user.id);
                                                 }
+                                                props.toggleFollowingProgress(
+                                                    false, user.id
+                                                );
                                             });
                                     }}
                                 >
@@ -72,7 +78,9 @@ export const Users = props => {
                                 </button>
                             ) : (
                                 <button
+                                disabled={props.followingInProgress.some(id => id === user.id)}
                                     onClick={() => {
+                                        props.toggleFollowingProgress(true, user.id);
                                         axios
                                             .post(
                                                 `https://social-network.samuraijs.com/api/1.0/follow/${user.id}`,
@@ -89,6 +97,9 @@ export const Users = props => {
                                                 if (res.data.resultCode === 0) {
                                                     props.follow(user.id);
                                                 }
+                                                props.toggleFollowingProgress(
+                                                    false, user.id
+                                                );
                                             });
                                     }}
                                 >
